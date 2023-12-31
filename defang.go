@@ -31,13 +31,13 @@ var DefangPatterns = []map[string]string{
 	{
 		"find":    `^(http:\/\/)`,
 		"change":  "http:",
-		"replace": "hXXp:",
+		"replace": "hXXp",
 	},
 
 	{
 		"find":    `^(https:\/\/)`,
 		"change":  "https:",
-		"replace": "hXXps:",
+		"replace": "hXXps",
 	},
 
 	{
