@@ -31,18 +31,33 @@ var DefangPatterns = []map[string]string{
 	{
 		"find":    `^(http:\/\/)`,
 		"change":  "http:",
-		"replace": "hXXp",
+		"replace": "hXXp:",
 	},
 
 	{
 		"find":    `^(https:\/\/)`,
 		"change":  "https:",
-		"replace": "hXXps",
+		"replace": "hXXps:",
 	},
 
 	{
 		"find":    `([a-zA-Z0-9_.+-]+)@([a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+)`,
 		"change":  "@",
 		"replace": "[AT]",
+	},
+	{
+		"find":    `([a-zA-Z0-9_.+-]+)\.([a-zA-Z]{2,})`,
+		"change":  ".",
+		"replace": "[.]",
+	},
+	{
+		"find":    `(\.)([a-zA-Z]{2,})`,
+		"change":  ".",
+		"replace": "[.]",
+	},
+	{
+		"find":    `([a-zA-Z0-9-]+)\.([a-zA-Z0-9-]+)\.([a-zA-Z]{2,})`,
+		"change":  ".",
+		"replace": "[.]",
 	},
 }
