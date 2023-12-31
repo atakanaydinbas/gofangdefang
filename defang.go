@@ -36,7 +36,7 @@ var DefangPatterns = []map[string]string{
 
 	{
 		"find":    `^(https:\/\/)`,
-		"change":  "https",
+		"change":  "https:",
 		"replace": "hXXps:",
 	},
 
