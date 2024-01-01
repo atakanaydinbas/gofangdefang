@@ -23,40 +23,32 @@ func DefangAll(input string) string {
 
 var DefangPatterns = []map[string]string{
 	{
-		"find":    `(?:\b\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}\b|\b[a-zA-Z0-9-]+\.[a-zA-Z]{2,}\b)`,
-		"change":  ".",
-		"replace": "[.]",
+		"find":    `(https?://\S+)`,
+		"change":  "https:",
+		"replace": "hXXps:",
 	},
-
 	{
 		"find":    `^(http:\/\/)`,
 		"change":  "http:",
 		"replace": "hXXp:",
 	},
-
-	{
-		"find":    `^(https:\/\/)`,
-		"change":  "https:",
-		"replace": "hXXps:",
-	},
-
 	{
 		"find":    `([a-zA-Z0-9_.+-]+)@([a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+)`,
 		"change":  "@",
 		"replace": "[AT]",
 	},
 	{
-		"find":    `([a-zA-Z0-9_.+-]+)\.([a-zA-Z]{2,})`,
+		"find":    `(\d+\.\d+\.\d+\.\d+)([^0-9])`,
 		"change":  ".",
 		"replace": "[.]",
 	},
 	{
-		"find":    `(\.)([a-zA-Z]{2,})`,
+		"find":    `\d+\.\d+\.\d+\.(\d+)`,
 		"change":  ".",
 		"replace": "[.]",
 	},
 	{
-		"find":    `([a-zA-Z0-9-]+)\.([a-zA-Z0-9-]+)\.([a-zA-Z]{2,})`,
+		"find":    `[^.]\.([a-zA-Z0-9])`,
 		"change":  ".",
 		"replace": "[.]",
 	},
