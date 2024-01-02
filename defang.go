@@ -1,6 +1,7 @@
 package gofangdefang
 
 import (
+	"os"
 	"regexp"
 	"strings"
 
@@ -21,4 +22,31 @@ func DefangAll(input string) string {
 
 	}
 	return output
+}
+
+func DefangFile(filepath string, willbesavedfile bool, newfilename ...string) (string, error) {
+
+	fileByte, err := os.ReadFile(filepath)
+	if err != nil {
+		return "", err
+	}
+
+	if willbesavedfile {
+		if len(newfilename) > 0 {
+			err = os.WriteFile(newfilename[0], []byte(DefangAll(string(fileByte))), 0644)
+			if err != nil {
+				return "", err
+			}
+		} else {
+			extension := filepath[strings.LastIndex(filepath, "."):]
+			err = os.WriteFile(filepath[:strings.LastIndex(filepath, ".")]+"-defanged"+extension, []byte(DefangAll(string(fileByte))), 0644)
+			if err != nil {
+				return "", err
+			}
+		}
+	} else {
+		return DefangAll(string(fileByte)), nil
+	}
+
+	return "", nil
 }
