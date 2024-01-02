@@ -3,12 +3,14 @@ package gofangdefang
 import (
 	"regexp"
 	"strings"
+
+	"github.com/atakanaydinbas/gofangdefang/patterns"
 )
 
 func DefangAll(input string) string {
 
 	output := input
-	for _, pattern := range DefangPatterns {
+	for _, pattern := range patterns.DefangPatterns {
 		re := regexp.MustCompile(pattern["find"])
 		matches := re.FindAllString(input, -1)
 
@@ -19,37 +21,4 @@ func DefangAll(input string) string {
 
 	}
 	return output
-}
-
-var DefangPatterns = []map[string]string{
-	{
-		"find":    `(https?://\S+)`,
-		"change":  "https:",
-		"replace": "hXXps:",
-	},
-	{
-		"find":    `^(http:\/\/)`,
-		"change":  "http:",
-		"replace": "hXXp:",
-	},
-	{
-		"find":    `([a-zA-Z0-9_.+-]+)@([a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+)`,
-		"change":  "@",
-		"replace": "[AT]",
-	},
-	{
-		"find":    `(\d+\.\d+\.\d+\.\d+)([^0-9])`,
-		"change":  ".",
-		"replace": "[.]",
-	},
-	{
-		"find":    `\d+\.\d+\.\d+\.(\d+)`,
-		"change":  ".",
-		"replace": "[.]",
-	},
-	{
-		"find":    `[^.]\.([a-zA-Z0-9])`,
-		"change":  ".",
-		"replace": "[.]",
-	},
 }
