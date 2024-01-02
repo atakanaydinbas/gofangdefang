@@ -11,7 +11,7 @@ func FangAll(input string) string {
 	processedInput := input
 	var flags *regexp.Regexp
 
-	for _, pattern := range patterns.DefangPatterns {
+	for _, pattern := range patterns.FangPatterns {
 		flags = regexp.MustCompile(`(?m)(?s)` + pattern["find"])
 		processedInput = flags.ReplaceAllString(processedInput, pattern["replace"])
 	}
