@@ -40,6 +40,14 @@ func main() {
     filePath := "path/to/your/file.txt"
 
     // Fanging IOCs in a file
+    // FangFile is used to process IOCs in a file.
+    // Parameters:
+    //   - filepath string: Path to the file containing IOCs.
+    //   - willbesavedfile bool: Specifies if the processed data will be saved to a new file or not.
+    //   - newfilename ...string: Vararg, optionally used to specify the new filename.
+    // Returned Values:
+    //   - string: If willbesavedfile parameter is false, it will be text file of given file. If willbesavedfile parameter is true, it will be ""
+    //   - error: Error message in case of an error.
     fangedFile, err := gofangdefang.FangFile(filePath, true, "fanged_file.txt")
     if err != nil {
         fmt.Println("FangFile Error:", err)
@@ -48,6 +56,14 @@ func main() {
     fmt.Println("Fanged File Path:", fangedFile)
 
     // Defanging IOCs in a file
+    // DefangFile is used to process IOCs in a file.
+    // Parameters:
+    //   - filepath string: Path to the file containing IOCs.
+    //   - willbesavedfile bool: Specifies if the processed data will be saved to a new file or not.
+    //   - newfilename ...string: Vararg, optionally used to specify the new filename.
+    // Returned Values:
+    //   - string: If willbesavedfile parameter is false, it will be text file of given file. If willbesavedfile parameter is true, it will be ""
+    //   - error: Error message in case of an error.
     defangedFile, err := gofangdefang.DefangFile(filePath, true, "defanged_file.txt")
     if err != nil {
         fmt.Println("DefangFile Error:", err)
@@ -55,27 +71,6 @@ func main() {
     }
     fmt.Println("Defanged File Path:", defangedFile)
 }
-
-// DefangFile is used to process IOCs in a file.
-// Parameters:
-//   - filepath string: Path to the file containing IOCs.
-//   - willbesavedfile bool: Specifies if the processed data will be saved to a new file or not.
-//   - newfilename ...string: Vararg, optionally used to specify the new filename.
-// Returned Values:
-//   - string: If willbesavedfile parameter is false, it will be text file of given file. If willbesavedfile parameter is true, it will be ""
-//   - error: Error message in case of an error.
-}
-
-// FangFile is used to process IOCs in a file.
-// Parameters:
-//   - filepath string: Path to the file containing IOCs.
-//   - willbesavedfile bool: Specifies if the processed data will be saved to a new file or not.
-//   - newfilename ...string: Vararg, optionally used to specify the new filename.
-// Returned Values:
-//   - string: If willbesavedfile parameter is false, it will be text file of given file. If willbesavedfile parameter is true, it will be ""
-//   - error: Error message in case of an error.
-}
-
 ```
 
 ## Contribution
