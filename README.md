@@ -53,7 +53,6 @@ func main() {
         fmt.Println("FangFile Error:", err)
         return
     }
-    fmt.Println("Fanged File Path:", fangedFile)
 
     // Defanging IOCs in a file
     // DefangFile is used to process IOCs in a file.
@@ -69,7 +68,6 @@ func main() {
         fmt.Println("DefangFile Error:", err)
         return
     }
-    fmt.Println("Defanged File Path:", defangedFile)
 }
 ```
 
