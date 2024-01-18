@@ -19,17 +19,55 @@ To use GoFangDefang in your Go projects, import it directly from GitHub:
 - ``` go get github.com/atakanaydinbas/gofangdefang```
 
 ```go
+package main
+
 import (
     "fmt"
     "github.com/atakanaydinbas/gofangdefang"
 )
 
 func main() {
+    // Fanging a URL
     fangedURL := gofangdefang.FangAll("hXXps://example[.]com")
-    defangedURL := gofangdefang.DefangAll("foo@example.com ") 
-    fmt.Println(FangedURL) // --> https://example.com
-    fmt.Println(defangedURL) // --> foo[AT]example[.]com
+    // Defanging an email address
+    defangedEmail := gofangdefang.DefangAll("foo@example.com")
 
+    // Printing the results
+    fmt.Println(fangedURL)      // --> https://example.com
+    fmt.Println(defangedEmail)  // --> foo[AT]example[.]com
+
+    // Example usage for file operations
+    filePath := "path/to/your/file.txt"
+
+    // Fanging IOCs in a file
+    // FangFile is used to process IOCs in a file.
+    // Parameters:
+    //   - filepath string: Path to the file containing IOCs.
+    //   - willbesavedfile bool: Specifies if the processed data will be saved to a new file or not.
+    //   - newfilename ...string: Vararg, optionally used to specify the new filename.
+    // Returned Values:
+    //   - string: If willbesavedfile parameter is false, it will be text file of given file. If willbesavedfile parameter is true, it will be ""
+    //   - error: Error message in case of an error.
+    fangedFile, err := gofangdefang.FangFile(filePath, true, "fanged_file.txt")
+    if err != nil {
+        fmt.Println("FangFile Error:", err)
+        return
+    }
+
+    // Defanging IOCs in a file
+    // DefangFile is used to process IOCs in a file.
+    // Parameters:
+    //   - filepath string: Path to the file containing IOCs.
+    //   - willbesavedfile bool: Specifies if the processed data will be saved to a new file or not.
+    //   - newfilename ...string: Vararg, optionally used to specify the new filename.
+    // Returned Values:
+    //   - string: If willbesavedfile parameter is false, it will be text file of given file. If willbesavedfile parameter is true, it will be ""
+    //   - error: Error message in case of an error.
+    defangedFile, err := gofangdefang.DefangFile(filePath, true, "defanged_file.txt")
+    if err != nil {
+        fmt.Println("DefangFile Error:", err)
+        return
+    }
 }
 ```
 
