@@ -8,7 +8,7 @@ import (
 	"github.com/atakanaydinbas/gofangdefang/patterns"
 )
 
-func DefangAll(input string) string {
+func DefangText(input string) string {
 
 	output := input
 	for _, pattern := range patterns.DefangPatterns {
@@ -33,19 +33,19 @@ func DefangFile(filepath string, willbesavedfile bool, newfilename ...string) (s
 
 	if willbesavedfile {
 		if len(newfilename) > 0 {
-			err = os.WriteFile(newfilename[0], []byte(DefangAll(string(fileByte))), 0644)
+			err = os.WriteFile(newfilename[0], []byte(DefangText(string(fileByte))), 0644)
 			if err != nil {
 				return "", err
 			}
 		} else {
 			extension := filepath[strings.LastIndex(filepath, "."):]
-			err = os.WriteFile(filepath[:strings.LastIndex(filepath, ".")]+"-defanged"+extension, []byte(DefangAll(string(fileByte))), 0644)
+			err = os.WriteFile(filepath[:strings.LastIndex(filepath, ".")]+"-defanged"+extension, []byte(DefangText(string(fileByte))), 0644)
 			if err != nil {
 				return "", err
 			}
 		}
 	} else {
-		return DefangAll(string(fileByte)), nil
+		return DefangText(string(fileByte)), nil
 	}
 
 	return "", nil
